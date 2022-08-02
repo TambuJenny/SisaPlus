@@ -9,7 +9,7 @@ namespace DomainService.Models.Interface
         Task Create (PersonRequest request);
         Task<PersonResponse> GetbyId(Guid id);
         Task<List<PersonResponse>> GetAll();
-        Task Update(PersonRequest request);
+        Task Update(PersonResponse request);
         Task Delete(Guid id);
     }
 }

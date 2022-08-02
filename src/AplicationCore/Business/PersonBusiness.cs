@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using AutoMapper;
 using DomainService.Models;
 using DomainService.Models.Interface;
@@ -28,9 +29,14 @@ namespace AplicationCore.Business
             throw new NotImplementedException();
         }
 
-        public Task<PersonResponse> GetbyId(Guid id)
+        public async Task<PersonResponse> GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            var getPersonbyId = await _DbContext.Persons.Where(u => u.Id == id).FirstOrDefaultAsync();
+            
+            if(getPersonbyId == null)
+                 throw new NotImplementedException("Pessoa não existe");
+
+            return _mapper.Map<PersonResponse>(getPersonbyId);
         }
 
         public async Task Create(PersonRequest request)
@@ -46,16 +52,25 @@ namespace AplicationCore.Business
 
             if (exist)
                 throw new NotImplementedException("Pessoa já existe");
-            
+
             var dataPerson = _mapper.Map<PersonModel>(request);
             dataPerson.Id = Guid.NewGuid();
             _DbContext.Add(_mapper.Map<PersonModel>(dataPerson));
             await _DbContext.SaveChangesAsync();
         }
 
-        public Task Update(PersonRequest request)
+        public async Task Update(PersonResponse request)
         {
-            throw new NotImplementedException();
+            bool exist = (from u in _DbContext.Persons where u.Id == request.Id select u).Any();
+            
+            if(!exist)
+              throw new NotImplementedException("Pessoa não existe"); 
+
+            var dataPerson = _mapper.Map<PersonModel>(request);
+            dataPerson.ModifiedDate = DateTime.Now;
+            
+            _DbContext.Persons.Update(dataPerson);
+            await  _DbContext.SaveChangesAsync(); 
         }
     }
 }

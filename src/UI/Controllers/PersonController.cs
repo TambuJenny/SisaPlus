@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using DomainService.Models.Interface;
 using DomainService.Request;
+using DomainService.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -30,8 +32,48 @@ namespace UI.Controllers
                     case "Pessoa já existe":
                         return NotFound(execeptionPerson.Message);
                     default:
-                        return BadRequest();
+                        return BadRequest(execeptionPerson);
                 }
+            }
+        }
+
+        [HttpGet("GetbyId")]
+        public async Task<ActionResult<PersonResponse>> GetbyId ( [Required][FromHeader(Name ="IdPerson")] Guid IdPerson)
+        {
+                try
+                {
+                    var getperson = await _IPerson.GetbyId(IdPerson);
+                    return Ok(getperson);
+                }
+                catch (NotImplementedException execeptionPerson)
+                {
+                    switch (execeptionPerson.Message)
+                    {
+                        case "Pessoa não existe":
+                            return NotFound(execeptionPerson.Message);
+                        default:
+                            return BadRequest(execeptionPerson);
+                    }
+                }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update ([Required][FromBody] PersonResponse request)
+        {
+            try
+            {
+                await _IPerson.Update(request);
+                return Ok();
+            }
+            catch (NotImplementedException execeptionPerson)
+            {
+                 switch (execeptionPerson.Message)
+                    {
+                        case "Pessoa não existe":
+                            return NotFound(execeptionPerson.Message);
+                        default:
+                            return BadRequest(execeptionPerson);
+                    }
             }
         }
     }
