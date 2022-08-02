@@ -1,7 +1,8 @@
 using AutoMapper;
-using DomainService.DTO;
 using DomainService.Models;
 using DomainService.Models.Interface;
+using DomainService.Request;
+using DomainService.Response;
 using Infrastruture.Context;
 
 namespace AplicationCore.Business
@@ -22,23 +23,22 @@ namespace AplicationCore.Business
             throw new NotImplementedException();
         }
 
-        public Task<List<PersonDTO>> GetAll()
+        public Task<List<PersonResponse>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<PersonDTO> GetbyId(Guid id)
+        public Task<PersonResponse> GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task Create(PersonDTO request)
+        public async Task Create(PersonRequest request)
         {
             bool exist = (
                 from u in _DbContext.Persons
                 where
-                    u.Id == request.Id
-                    && u.PhoneNumber == request.PhoneNumber
+                    u.PhoneNumber == request.PhoneNumber
                     && u.Email == request.Email
                     && u.Password == request.Password
                 select u
@@ -46,12 +46,14 @@ namespace AplicationCore.Business
 
             if (exist)
                 throw new NotImplementedException("Pessoa já existe");
-
-            _DbContext.Add(_mapper.Map<PersonModel>(request));
+            
+            var dataPerson = _mapper.Map<PersonModel>(request);
+            dataPerson.Id = Guid.NewGuid();
+            _DbContext.Add(_mapper.Map<PersonModel>(dataPerson));
             await _DbContext.SaveChangesAsync();
         }
 
-        public Task Update(PersonDTO request)
+        public Task Update(PersonRequest request)
         {
             throw new NotImplementedException();
         }

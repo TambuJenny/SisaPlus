@@ -1,10 +1,9 @@
 using DomainService.Enum;
 
-namespace DomainService.DTO
+namespace DomainService.Request
 {
-    public class PersonDTO
+    public class PersonRequest
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public GenreEnum Genre { get; set; }

@@ -1,8 +1,9 @@
 using AplicationCore.Business;
 using AutoMapper;
-using DomainService.DTO;
 using DomainService.Models;
 using DomainService.Models.Interface;
+using DomainService.Request;
+using DomainService.Response;
 
 namespace AplicationCore.Helpers
 {
@@ -16,7 +17,8 @@ namespace AplicationCore.Helpers
             var mapperConfig = new MapperConfiguration(
                 conf =>
                 {
-                    conf.CreateMap<PersonModel, PersonDTO>().ReverseMap();
+                    conf.CreateMap<PersonModel, PersonRequest>().ReverseMap();
+                    conf.CreateMap<PersonModel, PersonResponse>().ReverseMap();
                 }
             );
             AutoMapper.IMapper mapper = mapperConfig.CreateMapper();

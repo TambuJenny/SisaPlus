@@ -1,5 +1,5 @@
-using DomainService.DTO;
 using DomainService.Models.Interface;
+using DomainService.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers
@@ -16,7 +16,7 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] PersonDTO request)
+        public async Task<ActionResult> Create([FromBody] PersonRequest request)
         {
             try
             {

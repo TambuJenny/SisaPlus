@@ -1,14 +1,15 @@
-using DomainService.DTO;
+using DomainService.Request;
+using DomainService.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DomainService.Models.Interface
 {
     public interface IPerson
     {
-        Task Create (PersonDTO request);
-        Task<PersonDTO> GetbyId(Guid id);
-        Task<List<PersonDTO>> GetAll();
-        Task Update(PersonDTO request);
+        Task Create (PersonRequest request);
+        Task<PersonResponse> GetbyId(Guid id);
+        Task<List<PersonResponse>> GetAll();
+        Task Update(PersonRequest request);
         Task Delete(Guid id);
     }
 }
