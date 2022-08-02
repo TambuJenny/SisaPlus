@@ -12,5 +12,6 @@ namespace DomainService.DTO
         public string Description { get; set; }
         public string Email { get; set; }
         public String PhoneNumber { get; set; }
+        public String Password { get; set; }
     }
 }

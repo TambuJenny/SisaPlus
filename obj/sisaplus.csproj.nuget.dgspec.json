@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\sisaplus\\sisaplus.csproj": {}
+    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\sisaplus\\sisaplus.csproj": {
+    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\sisaplus\\sisaplus.csproj",
+        "projectUniqueName": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj",
         "projectName": "sisaplus",
-        "projectPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\sisaplus\\sisaplus.csproj",
+        "projectPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj",
         "packagesPath": "C:\\Users\\Tambu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\sisaplus\\obj\\",
+        "outputPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tambu\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,9 +38,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.4, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.5, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

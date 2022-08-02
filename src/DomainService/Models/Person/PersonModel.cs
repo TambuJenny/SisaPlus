@@ -13,6 +13,7 @@ namespace DomainService.Models
         public string Description { get; set; }
         public string Email { get; set; }
         public String PhoneNumber { get; set; }
+        public String Password { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
