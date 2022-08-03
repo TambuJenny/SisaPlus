@@ -19,20 +19,15 @@ namespace AplicationCore.Business
             _mapper = mapper;
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(Guid idPerson)
         { 
-            var teste = await (from u in _DbContext.Persons where u.Id == id select u).FirstOrDefaultAsync();
-            bool exist = (
-            from u in _DbContext.Persons
-            where
-                u.Id == id
-            select u
-            ).Any();
+            var getPerson = await (from u in _DbContext.Persons where u.Id == idPerson select u).FirstOrDefaultAsync();
 
-            if (!exist)
+            if (getPerson == null)
                 throw new NotImplementedException("Pessoa não existe");
 
-           // _DbContext.Remove()
+            _DbContext.Remove(getPerson);
+            await _DbContext.SaveChangesAsync();
         }
 
         public async Task<List<PersonResponse>> GetAll()
@@ -42,9 +37,9 @@ namespace AplicationCore.Business
             return _mapper.Map<List<PersonResponse>>(getPersonById);
         }
 
-        public async Task<PersonResponse> GetbyId(Guid id)
+        public async Task<PersonResponse> GetbyId(Guid idPerson)
         {
-            var getPersonById = await _DbContext.Persons.Where(e => e.Id == id).SingleOrDefaultAsync();
+            var getPersonById = await _DbContext.Persons.Where(e => e.Id == idPerson).SingleOrDefaultAsync();
             
             if(getPersonById == null)
                  throw new NotImplementedException("Pessoa não existe");
@@ -66,9 +61,10 @@ namespace AplicationCore.Business
             if (exist)
                 throw new NotImplementedException("Pessoa já existe");
 
-            var dataPerson = _mapper.Map<PersonModel>(request);
-            dataPerson.Id = Guid.NewGuid();
-            _DbContext.Add(_mapper.Map<PersonModel>(dataPerson));
+            var dataPersonModel = _mapper.Map<PersonModel>(request);
+            dataPersonModel.Id = Guid.NewGuid();
+
+            _DbContext.Add(_mapper.Map<PersonModel>(dataPersonModel));
             await _DbContext.SaveChangesAsync();
         }
 
@@ -79,10 +75,10 @@ namespace AplicationCore.Business
             if(!exist)
               throw new NotImplementedException("Pessoa não existe"); 
 
-            var dataPerson = _mapper.Map<PersonModel>(request);
-            dataPerson.ModifiedDate = DateTime.Now;
+            var dataPersonModel = _mapper.Map<PersonModel>(request);
+            dataPersonModel.ModifiedDate = DateTime.Now;
             
-            _DbContext.Persons.Update(dataPerson);
+            _DbContext.Persons.Update(dataPersonModel);
             await  _DbContext.SaveChangesAsync(); 
         }
     }

@@ -38,11 +38,11 @@ namespace UI.Controllers
         }
 
         [HttpGet("GetbyId")]
-        public async Task<ActionResult<PersonResponse>> GetbyId ( [Required][FromHeader(Name ="IdPerson")] Guid IdPerson)
+        public async Task<ActionResult<PersonResponse>> GetbyId ( [Required][FromHeader(Name ="IdPerson")] Guid idPerson)
         {
                 try
                 {
-                    var getperson = await _IPerson.GetbyId(IdPerson);
+                    var getperson = await _IPerson.GetbyId(idPerson);
                     return Ok(getperson);
                 }
                 catch (NotImplementedException execeptionPerson)
@@ -77,12 +77,12 @@ namespace UI.Controllers
             }
         }
 
-        [HttpDelete("{idPessoa}")]
-        public async Task<ActionResult> Delete (Guid idPessoa)
+        [HttpDelete]
+        public async Task<ActionResult> Delete ([Required] [FromHeader] Guid idPerson)
         {
             try
             {
-                await _IPerson.Delete(idPessoa);
+                await _IPerson.Delete(idPerson);
                 return Ok();
             }
             catch (NotImplementedException execeptionPerson)
