@@ -53,8 +53,7 @@ namespace AplicationCore.Business
                 from u in _DbContext.Persons
                 where
                     u.PhoneNumber == request.PhoneNumber
-                    && u.Email == request.Email
-                    && u.Password == request.Password
+                    || u.Email == request.Email
                 select u
             ).Any();
 
@@ -70,10 +69,22 @@ namespace AplicationCore.Business
 
         public async Task Update(PersonResponse request)
         {
-            bool exist = (from u in _DbContext.Persons where u.Id == request.Id select u).Any();
+            bool existPerson = (from u in _DbContext.Persons where u.Id == request.Id select u).Any();
             
-            if(!exist)
+            if(!existPerson)
               throw new NotImplementedException("Pessoa não existe"); 
+            
+            bool existDataPerson =(
+                from u in _DbContext.Persons
+                where
+                    u.PhoneNumber == request.PhoneNumber
+                    || u.Email == request.Email
+                select u
+            ).Any();
+
+            if(!existDataPerson)
+              throw new NotImplementedException("Dados utilizado");
+            
 
             var dataPersonModel = _mapper.Map<PersonModel>(request);
             dataPersonModel.ModifiedDate = DateTime.Now;

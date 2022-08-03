@@ -68,8 +68,10 @@ namespace UI.Controllers
             catch (NotImplementedException execeptionPerson)
             {
                  switch (execeptionPerson.Message)
-                    {
+                    { 
                         case "Pessoa não existe":
+                            return NotFound(execeptionPerson.Message);
+                        case "Dados utilizado":
                             return NotFound(execeptionPerson.Message);
                         default:
                             return BadRequest(execeptionPerson);
