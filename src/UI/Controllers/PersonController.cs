@@ -96,5 +96,23 @@ namespace UI.Controllers
                     }
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<PersonResponse>> GetAll ()
+        {
+                try
+                {
+                    var getperson = await _IPerson.GetAll();
+                    return Ok(getperson);
+                }
+                catch (NotImplementedException execeptionPerson)
+                {
+                    switch (execeptionPerson.Message)
+                    {
+                        default:
+                            return BadRequest(execeptionPerson);
+                    }
+                }
+        }
     }
 }

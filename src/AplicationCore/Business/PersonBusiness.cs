@@ -35,9 +35,11 @@ namespace AplicationCore.Business
            // _DbContext.Remove()
         }
 
-        public Task<List<PersonResponse>> GetAll()
+        public async Task<List<PersonResponse>> GetAll()
         {
-            throw new NotImplementedException();
+            var getPersonById = await _DbContext.Persons.ToListAsync();
+
+            return _mapper.Map<List<PersonResponse>>(getPersonById);
         }
 
         public async Task<PersonResponse> GetbyId(Guid id)
