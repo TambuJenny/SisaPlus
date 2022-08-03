@@ -1,10 +1,10 @@
-using System.Data.Entity;
 using AutoMapper;
 using DomainService.Models;
 using DomainService.Models.Interface;
 using DomainService.Request;
 using DomainService.Response;
 using Infrastruture.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace AplicationCore.Business
 {
@@ -19,9 +19,20 @@ namespace AplicationCore.Business
             _mapper = mapper;
         }
 
-        public Task Delete(Guid id)
-        {
-            throw new NotImplementedException();
+        public async Task Delete(Guid id)
+        { 
+            var teste = await (from u in _DbContext.Persons where u.Id == id select u).FirstOrDefaultAsync();
+            bool exist = (
+            from u in _DbContext.Persons
+            where
+                u.Id == id
+            select u
+            ).Any();
+
+            if (!exist)
+                throw new NotImplementedException("Pessoa não existe");
+
+           // _DbContext.Remove()
         }
 
         public Task<List<PersonResponse>> GetAll()
@@ -31,12 +42,12 @@ namespace AplicationCore.Business
 
         public async Task<PersonResponse> GetbyId(Guid id)
         {
-            var getPersonbyId = await _DbContext.Persons.Where(u => u.Id == id).FirstOrDefaultAsync();
+            var getPersonById = await _DbContext.Persons.Where(e => e.Id == id).SingleOrDefaultAsync();
             
-            if(getPersonbyId == null)
+            if(getPersonById == null)
                  throw new NotImplementedException("Pessoa não existe");
 
-            return _mapper.Map<PersonResponse>(getPersonbyId);
+            return _mapper.Map<PersonResponse>(getPersonById);
         }
 
         public async Task Create(PersonRequest request)

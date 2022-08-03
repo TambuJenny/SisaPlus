@@ -76,5 +76,25 @@ namespace UI.Controllers
                     }
             }
         }
+
+        [HttpDelete("{idPessoa}")]
+        public async Task<ActionResult> Delete (Guid idPessoa)
+        {
+            try
+            {
+                await _IPerson.Delete(idPessoa);
+                return Ok();
+            }
+            catch (NotImplementedException execeptionPerson)
+            {
+                 switch (execeptionPerson.Message)
+                    {
+                        case "Pessoa não existe":
+                            return NotFound(execeptionPerson.Message);
+                        default:
+                            return BadRequest(execeptionPerson);
+                    }
+            }
+        }
     }
 }

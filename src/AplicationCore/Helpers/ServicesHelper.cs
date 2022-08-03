@@ -21,7 +21,7 @@ namespace AplicationCore.Helpers
                     conf.CreateMap<PersonModel, PersonResponse>().ReverseMap();
                 }
             );
-            AutoMapper.IMapper mapper = mapperConfig.CreateMapper();
+            IMapper mapper = mapperConfig.CreateMapper();
 
             services.AddSingleton(mapper);
         }
