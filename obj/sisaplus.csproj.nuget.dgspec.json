@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj": {}
+    "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj": {
+    "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj",
+        "projectUniqueName": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj",
         "projectName": "sisaplus",
-        "projectPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\sisaplus.csproj",
-        "packagesPath": "C:\\Users\\Tambu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tambu\\3D Objects\\DESAFIO\\SisaPlus\\obj\\",
+        "projectPath": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj",
+        "packagesPath": "C:\\Users\\Patricio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tambu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Patricio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -109,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
