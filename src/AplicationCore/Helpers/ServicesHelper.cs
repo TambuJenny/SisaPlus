@@ -6,6 +6,7 @@ using DomainService.Models.Interface;
 using DomainService.Request;
 using DomainService.Response;
 using Services.Person;
+using Services.System;
 
 namespace AplicationCore.Helpers
 {
@@ -15,6 +16,7 @@ namespace AplicationCore.Helpers
         {
             services.AddScoped<IPerson, PersonServices>();
             services.AddScoped<IStudent, StudentServices>();
+            services.AddScoped<ICourse, CourseSercices>();
 
             //AutoMapper
             var mapperConfig = new MapperConfiguration(
@@ -23,7 +25,6 @@ namespace AplicationCore.Helpers
                     conf.CreateMap<PersonModel, PersonRequest>().ReverseMap();
                     conf.CreateMap<PersonModel, PersonResponse>().ReverseMap();
                     conf.CreateMap<StudentModel, StudentResponse>().ReverseMap();
-                    conf.CreateMap<StudentModel, StudentRequest>().ReverseMap();
                     conf.CreateMap<CourseModel, CourseRequest>().ReverseMap();
                     conf.CreateMap<CourseModel, CourseResponse>().ReverseMap();
                 }

@@ -23,7 +23,7 @@ namespace Services.System
         {
             bool existeCourse = await (from c in _context.Courses where c.NameCourse == request.NameCourse select c).AnyAsync();
 
-            if(!existeCourse)
+            if(existeCourse)
                     throw new NotImplementedException("Courso já existe");
 
             var course = _mapper.Map<CourseModel>(request);
@@ -38,11 +38,10 @@ namespace Services.System
             var existeCourse = await (from c in _context.Courses where c.Id == id select c).FirstOrDefaultAsync();
 
             if(existeCourse== null)
-                throw new NotImplementedException("Courso não existe");
+                throw new NotImplementedException("Curso não existe");
 
             _context.Courses.Remove(existeCourse);
-
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<CourseResponse>> GetAll()
@@ -50,7 +49,7 @@ namespace Services.System
             var getAllCourse = await _context.Courses.ToListAsync();
 
             if (getAllCourse == null)
-                 throw new NotImplementedException("Não existe Courso");
+                 throw new NotImplementedException("Curso não existe");
             
             return _mapper.Map<List<CourseResponse>>(getAllCourse);
         }

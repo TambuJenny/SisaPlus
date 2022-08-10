@@ -21,25 +21,36 @@ namespace Services.Person
 
         public async Task Create(StudentRequest request)
         {
-            var existeStudent = await (
+            bool existeStudent = await (
                 from s in _context.Students
-                where s.Person.Id == request.Person
+                where s.Person.Id == request.Person && s.StudentNumber == request.StudentNumber
                 select s
-            ).FirstOrDefaultAsync();
+            ).AnyAsync();
 
-            if (existeStudent == null)
-                    throw new NotImplementedException("Pessoa já existe");
-
+            if (existeStudent)
+                    throw new NotImplementedException("Estudante já existe");
+            
             var getPersonById = await (
                 from p in _context.Persons
                 where p.Id == request.Person
                 select p
             ).FirstOrDefaultAsync();
 
-            existeStudent.Person = getPersonById;
-            existeStudent.Id =  Guid.NewGuid();
+             if (getPersonById == null)
+                    throw new NotImplementedException("Pessoa não existe");
 
-            await _context.AddAsync(existeStudent);
+            var getCourseById = await _context.Courses.Where(c => c.Id == request.Course).FirstOrDefaultAsync();
+
+            if (getCourseById == null)
+                throw new NotImplementedException("Curso não existe");
+
+            var student = new StudentModel();
+            student.Person = getPersonById;
+            student.Id =  Guid.NewGuid();
+            student.StudentNumber = request.StudentNumber;
+            student.Course = getCourseById;
+
+            await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
         }
 
