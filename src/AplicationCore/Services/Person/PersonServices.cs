@@ -6,14 +6,14 @@ using DomainService.Response;
 using Infrastruture.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace AplicationCore.Business
+namespace AplicationCore.Services
 {
-    public class PersonBusiness : IPerson
+    public class PersonServices : IPerson
     {
         private readonly DataBaseContext _DbContext;
         private readonly IMapper _mapper;
 
-        public PersonBusiness(DataBaseContext DbContext, IMapper mapper)
+        public PersonServices(DataBaseContext DbContext, IMapper mapper)
         {
             _DbContext = DbContext;
             _mapper = mapper;

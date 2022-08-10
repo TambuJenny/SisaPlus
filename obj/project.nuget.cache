@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L4fRDgpGqwSQOrbCIUKQfz7kBpmqUIro5fRcrG3+yVXpXHyHYLc+CH01E+bQhbNEWVkyNA13zVTds1rXRDeTEA==",
+  "dgSpecHash": "S5wwBu+JbjhTHN8OzR1+qYyuKBbauj/GqZ8oLvsKufR1goF/MxNdC/HZIHAH861r8ORo/cUEmbb4fUF7PAlvdQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj",
+  "projectFilePath": "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\sisaplus.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Patricio\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Patricio\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

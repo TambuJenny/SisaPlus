@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj": {}
+    "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\sisaplus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj": {
+    "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\sisaplus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj",
+        "projectUniqueName": "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\sisaplus.csproj",
         "projectName": "sisaplus",
-        "projectPath": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\sisaplus.csproj",
+        "projectPath": "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\sisaplus.csproj",
         "packagesPath": "C:\\Users\\Patricio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Patricio\\Desktop\\projeto\\sisaplus\\obj\\",
+        "outputPath": "C:\\Users\\Patricio\\Desktop\\projeto\\SisaPlus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Patricio\\AppData\\Roaming\\NuGet\\NuGet.Config",

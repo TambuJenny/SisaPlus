@@ -1,5 +1,6 @@
 using System.Configuration;
 using DomainService.Models;
+using DomainService.Models.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -10,6 +11,7 @@ namespace Infrastruture.Context
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
 
         public virtual DbSet<PersonModel> Persons {get;set;}
+        public virtual DbSet<StudentModel> Students {get;set;}
     }
    
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<DataBaseContext>
