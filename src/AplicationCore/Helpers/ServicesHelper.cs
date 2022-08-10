@@ -24,7 +24,8 @@ namespace AplicationCore.Helpers
                     conf.CreateMap<PersonModel, PersonResponse>().ReverseMap();
                     conf.CreateMap<StudentModel, StudentResponse>().ReverseMap();
                     conf.CreateMap<StudentModel, StudentRequest>().ReverseMap();
-                    
+                    conf.CreateMap<CourseModel, CourseRequest>().ReverseMap();
+                    conf.CreateMap<CourseModel, CourseResponse>().ReverseMap();
                 }
             );
             IMapper mapper = mapperConfig.CreateMapper();

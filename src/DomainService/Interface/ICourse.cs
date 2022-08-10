@@ -6,6 +6,7 @@ namespace DomainService.Interface
     public interface ICourse
     {
         Task Create(CourseRequest request);
+        Task Delete(Guid id);
         Task<List<CourseResponse>> GetAll();
     }
 }
