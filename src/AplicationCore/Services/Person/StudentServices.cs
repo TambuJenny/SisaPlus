@@ -37,6 +37,7 @@ namespace Services.Person
             ).FirstOrDefaultAsync();
 
             existeStudent.Person = getPersonById;
+            existeStudent.Id =  Guid.NewGuid();
 
             await _context.AddAsync(existeStudent);
             await _context.SaveChangesAsync();
