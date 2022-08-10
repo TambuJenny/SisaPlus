@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\AplicationCore",
+    "\\src\\AplicationCore\\Services",
+    "\\src\\AplicationCore\\Services\\Person",
+    "\\src\\DomainService",
+    "\\src\\DomainService\\Interface"
+  ],
+  "SelectedNode": "\\src\\AplicationCore\\Services\\Person\\StudentServices.cs",
+  "PreviewInSolutionExplorer": false
+}

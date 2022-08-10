@@ -3,6 +3,7 @@ using System;
 using Infrastruture.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace sisaplus.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220810141027_AlterMigration_Students")]
+    partial class AlterMigration_Students
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,34 @@ namespace sisaplus.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("CourseModel");
+                });
+
+            modelBuilder.Entity("DomainService.Models.Person.StudentModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("AcademicLevel")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("StudentNumber")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("DomainService.Models.PersonModel", b =>
@@ -74,34 +103,7 @@ namespace sisaplus.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("DomainService.Models.StudentModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("AcademicLevel")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("CourseId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("StudentNumber")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("DomainService.Models.StudentModel", b =>
+            modelBuilder.Entity("DomainService.Models.Person.StudentModel", b =>
                 {
                     b.HasOne("DomainService.Models.CourseModel", "Course")
                         .WithMany()
