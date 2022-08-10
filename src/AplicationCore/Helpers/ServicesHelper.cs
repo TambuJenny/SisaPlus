@@ -1,4 +1,4 @@
-using AplicationCore.Business;
+using AplicationCore.Services;
 using AutoMapper;
 using DomainService.Models;
 using DomainService.Models.Interface;
@@ -11,7 +11,7 @@ namespace AplicationCore.Helpers
     {
         public static void RegisterBusinesses(IServiceCollection services)
         {
-            services.AddScoped<IPerson, PersonBusiness>();
+            services.AddScoped<IPerson, PersonServices>();
 
             //AutoMapper
             var mapperConfig = new MapperConfiguration(

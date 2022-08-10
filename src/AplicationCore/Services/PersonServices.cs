@@ -6,22 +6,26 @@ using DomainService.Response;
 using Infrastruture.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace AplicationCore.Business
+namespace AplicationCore.Services
 {
-    public class PersonBusiness : IPerson
+    public class PersonServices : IPerson
     {
         private readonly DataBaseContext _DbContext;
         private readonly IMapper _mapper;
 
-        public PersonBusiness(DataBaseContext DbContext, IMapper mapper)
+        public PersonServices(DataBaseContext DbContext, IMapper mapper)
         {
             _DbContext = DbContext;
             _mapper = mapper;
         }
 
         public async Task Delete(Guid idPerson)
-        { 
-            var getPerson = await (from u in _DbContext.Persons where u.Id == idPerson select u).FirstOrDefaultAsync();
+        {
+            var getPerson = await (
+                from u in _DbContext.Persons
+                where u.Id == idPerson
+                select u
+            ).FirstOrDefaultAsync();
 
             if (getPerson == null)
                 throw new NotImplementedException("Pessoa não existe");
@@ -39,10 +43,12 @@ namespace AplicationCore.Business
 
         public async Task<PersonResponse> GetbyId(Guid idPerson)
         {
-            var getPersonById = await _DbContext.Persons.Where(e => e.Id == idPerson).SingleOrDefaultAsync();
-            
-            if(getPersonById == null)
-                 throw new NotImplementedException("Pessoa não existe");
+            var getPersonById = await _DbContext.Persons
+                .Where(e => e.Id == idPerson)
+                .SingleOrDefaultAsync();
+
+            if (getPersonById == null)
+                throw new NotImplementedException("Pessoa não existe");
 
             return _mapper.Map<PersonResponse>(getPersonById);
         }
@@ -51,9 +57,7 @@ namespace AplicationCore.Business
         {
             bool exist = (
                 from u in _DbContext.Persons
-                where
-                    u.PhoneNumber == request.PhoneNumber
-                    || u.Email == request.Email
+                where u.PhoneNumber == request.PhoneNumber || u.Email == request.Email
                 select u
             ).Any();
 
@@ -69,28 +73,29 @@ namespace AplicationCore.Business
 
         public async Task Update(PersonResponse request)
         {
-            bool existPerson = (from u in _DbContext.Persons where u.Id == request.Id select u).Any();
-            
-            if(!existPerson)
-              throw new NotImplementedException("Pessoa não existe"); 
-            
-            bool existDataPerson =(
+            bool existPerson = (
                 from u in _DbContext.Persons
-                where
-                    u.PhoneNumber == request.PhoneNumber
-                    || u.Email == request.Email
+                where u.Id == request.Id
                 select u
             ).Any();
 
-            if(!existDataPerson)
-              throw new NotImplementedException("Dados utilizado");
-            
+            if (!existPerson)
+                throw new NotImplementedException("Pessoa não existe");
+
+            bool existDataPerson = (
+                from u in _DbContext.Persons
+                where u.PhoneNumber == request.PhoneNumber || u.Email == request.Email
+                select u
+            ).Any();
+
+            if (!existDataPerson)
+                throw new NotImplementedException("Dados utilizado");
 
             var dataPersonModel = _mapper.Map<PersonModel>(request);
             dataPersonModel.ModifiedDate = DateTime.Now;
-            
+
             _DbContext.Persons.Update(dataPersonModel);
-            await  _DbContext.SaveChangesAsync(); 
+            await _DbContext.SaveChangesAsync();
         }
     }
 }
